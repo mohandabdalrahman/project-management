@@ -1,0 +1,28 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0;
+}
+.title {
+  margin: 0;
+  font-weight: 500;
+}
+.spacer {
+  flex: 1;
+}
+.table-wrapper {
+  width: 100%;
+  overflow: auto;
+}
+table {
+  width: 100%;
+}
+.filter-field {
+  width: 280px;
+  max-width: 100%;
+  margin-bottom: 8px;
+}
+th.mat-header-cell, td.mat-cell {
+  white-space: nowrap;
+}

@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+.app-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.brand {
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+a.active {
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.container {
+  padding: 16px;
+}

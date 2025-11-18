@@ -31,7 +31,7 @@ import {Component, ViewChild, computed, effect, signal, AfterViewInit} from '@an
   styleUrl: './tasks-list.component.scss',
 })
 export class TasksListComponent implements  AfterViewInit{
-  displayedColumns = ['title', 'assignedTo', 'dueDate', 'estimatedHours', 'category', 'status', 'actions'];
+  displayedColumns = ['title', 'description', 'assignedTo', 'dueDate', 'estimatedHours', 'category', 'status', 'actions'];
   dataSource = new MatTableDataSource<Task>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -86,4 +86,4 @@ export class TasksListComponent implements  AfterViewInit{
     });
   }
 }
- 
+

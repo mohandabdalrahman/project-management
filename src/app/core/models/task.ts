@@ -22,6 +22,11 @@ export interface Task {
   status: TaskStatus;
 }
 
+export type TaskDialogData = {
+  mode: 'create' | 'edit';
+  task?: Task;
+};
+
 export const SEED_TASKS: Task[] = [
   {
     id:  Math.random().toString(36).slice(2),

@@ -1,0 +1,66 @@
+<h2 mat-dialog-title>{{ data.mode === 'create' ? 'Create Task' : 'Edit Task' }}</h2>
+<form (ngSubmit)="onSubmit()" [formGroup]="form" novalidate>
+  <mat-dialog-content>
+    <div class="grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" required aria-required="true" />
+        @if(form.controls.title.invalid && form.controls.title.touched){
+          <mat-error>Title is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" rows="3"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Assigned To</mat-label>
+        <input matInput formControlName="assignedTo" required />
+        @if (form.controls.assignedTo.invalid && form.controls.assignedTo.touched){
+          <mat-error>Assignee is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Due Date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dueDate" required />
+        <mat-datepicker #picker></mat-datepicker>
+        @if (form.controls.dueDate.invalid && form.controls.dueDate.touched) {
+          <mat-error >Due date is required</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Estimated Hours</mat-label>
+        <input type="number" matInput formControlName="estimatedHours" required min="0" />
+        @if (form.controls.estimatedHours.invalid && form.controls.estimatedHours.touched){
+          <mat-error>Estimated hours must be >= 0</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <mat-select formControlName="category" required>
+          @for ( category of categories; track category){
+            <mat-option  [value]="category">{{ category }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" required>
+          @for ( status of statuses; track status){
+            <mat-option  [value]="status">{{ status }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close type="button">Cancel</button>
+    <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">{{ data.mode === 'create' ? 'Create' : 'Save' }}</button>
+  </mat-dialog-actions>
+</form>

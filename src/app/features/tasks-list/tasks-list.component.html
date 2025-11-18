@@ -1,0 +1,68 @@
+<div class="toolbar" role="region" aria-label="Tasks toolbar">
+  <h2 class="title">Tasks</h2>
+  <span class="spacer"></span>
+  <button mat-flat-button color="primary" (click)="createTask()" aria-label="Create task">
+    <mat-icon>add</mat-icon>
+    New Task
+  </button>
+  <a mat-stroked-button routerLink="/dashboard" aria-label="Go to dashboard">
+    <mat-icon>monitoring</mat-icon>
+    Dashboard
+  </a>
+</div>
+
+<div class="table-wrapper">
+  <mat-form-field appearance="outline" class="filter-field">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search tasks" aria-label="Filter tasks" />
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2" aria-label="Tasks table">
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+      <td mat-cell *matCellDef="let t">{{ t.title }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="assignedTo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Assignee</th>
+      <td mat-cell *matCellDef="let t">{{ t.assignedTo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dueDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Due</th>
+      <td mat-cell *matCellDef="let t">{{ t.dueDate | date:'mediumDate' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="estimatedHours">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Est. Hrs</th>
+      <td mat-cell *matCellDef="let t">{{ t.estimatedHours }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef>Category</th>
+      <td mat-cell *matCellDef="let t">
+        <mat-chip [color]="'primary'" [disabled]="true">{{ t.category }}</mat-chip>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let t">
+        <mat-chip [color]="t.status === 'Closed' ? 'accent' : 'primary'" [disabled]="true">{{ t.status }}</mat-chip>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let t">
+        <button mat-icon-button aria-label="Edit task" (click)="editTask(t)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="warn" aria-label="Delete task" (click)="deleteTask(t)"><mat-icon>delete</mat-icon></button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5,10,20]" showFirstLastButtons aria-label="Tasks paginator"></mat-paginator>
+</div>

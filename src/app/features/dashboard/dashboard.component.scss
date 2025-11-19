@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 16px 0;
+}
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.kpi {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  .value {
+    font-size: 1.8rem;
+    font-weight: 600;
+  };
+  .label {
+    color: rgba(0,0,0,.6);
+  }
+}
+.charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.chart-card {
+  padding: 12px;
+}
+h3 {
+  margin: 0 0 8px;
+  font-weight: 500;
+}
